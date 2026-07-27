@@ -1,0 +1,1168 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Marcelo Bento · Currículo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <style>
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg: #0a0f1a;
+      --bg-elev: #111827;
+      --bg-card: #151d2e;
+      --border: #1f2a40;
+      --text: #e8eef5;
+      --text-dim: #8b9bb4;
+      --text-muted: #5a6b85;
+      --accent: #10b981;
+      --accent-bright: #34d399;
+      --accent-glow: rgba(16, 185, 129, 0.25);
+      --blue: #3b82f6;
+      --amber: #f59e0b;
+      --rose: #f43f5e;
+      --radius: 16px;
+      --radius-sm: 10px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* ===== Background ambient ===== */
+    .ambient {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
+      overflow: hidden;
+      pointer-events: none;
+    }
+    .ambient::before,
+    .ambient::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(120px);
+      opacity: 0.18;
+    }
+    .ambient::before {
+      width: 600px;
+      height: 600px;
+      background: var(--accent);
+      top: -200px;
+      right: -100px;
+      animation: float1 18s ease-in-out infinite;
+    }
+    .ambient::after {
+      width: 500px;
+      height: 500px;
+      background: var(--blue);
+      bottom: -150px;
+      left: -100px;
+      animation: float2 22s ease-in-out infinite;
+    }
+    @keyframes float1 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(-40px, 60px); }
+    }
+    @keyframes float2 {
+      0%, 100% { transform: translate(0, 0); }
+      50% { transform: translate(50px, -40px); }
+    }
+
+    /* ===== Layout ===== */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    section {
+      padding: 100px 0;
+    }
+
+    .section-tag {
+      display: inline-block;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--accent-bright);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      color: var(--text-dim);
+      font-size: 17px;
+      max-width: 560px;
+      margin-bottom: 48px;
+    }
+
+    /* ===== Navbar ===== */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      transition: all 0.3s ease;
+    }
+    .nav.scrolled {
+      background: rgba(10, 15, 26, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 0;
+    }
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      font-weight: 800;
+      font-size: 18px;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .nav-logo-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 12px var(--accent-glow);
+    }
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+    }
+    .nav-links a {
+      padding: 8px 16px;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-dim);
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+    .nav-links a:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+    }
+    .nav-cta {
+      padding: 9px 20px !important;
+      background: var(--accent);
+      color: #04130d !important;
+      font-weight: 600 !important;
+      border-radius: 10px;
+    }
+    .nav-cta:hover {
+      background: var(--accent-bright) !important;
+    }
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    /* ===== Hero ===== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--accent-bright);
+      margin-bottom: 28px;
+    }
+    .hero-badge .pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-bright);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; box-shadow: 0 0 0 0 var(--accent-glow); }
+      50% { opacity: 0.6; box-shadow: 0 0 0 8px transparent; }
+    }
+    .hero h1 {
+      font-size: clamp(40px, 6vw, 68px);
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+    }
+    .hero h1 .grad {
+      background: linear-gradient(135deg, var(--accent-bright), var(--blue));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .hero p {
+      font-size: 19px;
+      color: var(--text-dim);
+      max-width: 520px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 28px;
+      border-radius: 12px;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      border: none;
+      transition: all 0.25s;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #04130d;
+    }
+    .btn-primary:hover {
+      background: var(--accent-bright);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px var(--accent-glow);
+    }
+    .btn-ghost {
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+    .btn-ghost:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: var(--text-muted);
+    }
+
+    /* Hero card */
+    .hero-card {
+      position: relative;
+    }
+    .profile-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100px;
+      background: linear-gradient(135deg, var(--accent), var(--blue));
+      opacity: 0.15;
+    }
+    .profile-avatar {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      border: 4px solid var(--bg-card);
+      box-shadow: 0 0 0 1px var(--border), 0 12px 32px rgba(0, 0, 0, 0.4);
+    }
+    .profile-name {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .profile-role {
+      color: var(--text-dim);
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+    .profile-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--accent-bright);
+    }
+    .stat-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ===== About ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--text-dim);
+      font-size: 17px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+    .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .info-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      transition: all 0.25s;
+    }
+    .info-item:hover {
+      border-color: var(--accent);
+      transform: translateX(4px);
+    }
+    .info-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: rgba(16, 185, 129, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .info-icon svg {
+      width: 20px;
+      height: 20px;
+      stroke: var(--accent-bright);
+    }
+    .info-label {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .info-value {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    /* ===== Skills ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+    }
+    .skill-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all 0.3s;
+    }
+    .skill-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    }
+    .skill-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 18px;
+      font-size: 22px;
+    }
+    .skill-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .skill-card p {
+      font-size: 14px;
+      color: var(--text-dim);
+      margin-bottom: 16px;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .skill-tag {
+      padding: 5px 12px;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--border);
+      border-radius: 100px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text-dim);
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    /* ===== Projects ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
+    .project-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: all 0.3s;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+    .project-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--blue));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s;
+    }
+    .project-card:hover {
+      border-color: var(--text-muted);
+      transform: translateY(-4px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+    }
+    .project-card:hover::after {
+      transform: scaleX(1);
+    }
+    .project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 16px;
+    }
+    .project-lang {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-dim);
+      font-family: 'JetBrains Mono', monospace;
+    }
+    .lang-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+    }
+    .project-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .project-card p {
+      font-size: 14px;
+      color: var(--text-dim);
+      line-height: 1.7;
+      margin-bottom: 20px;
+      flex-grow: 1;
+    }
+    .project-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--accent-bright);
+      transition: gap 0.2s;
+    }
+    .project-link:hover {
+      gap: 10px;
+    }
+
+    /* ===== Timeline (Education) ===== */
+    .timeline {
+      position: relative;
+      padding-left: 32px;
+    }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 8px;
+      top: 8px;
+      bottom: 8px;
+      width: 2px;
+      background: var(--border);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 40px;
+    }
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+    .timeline-dot {
+      position: absolute;
+      left: -32px;
+      top: 4px;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 3px solid var(--accent);
+      box-shadow: 0 0 0 4px var(--bg);
+    }
+    .timeline-date {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      color: var(--accent-bright);
+      margin-bottom: 6px;
+    }
+    .timeline-item h3 {
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+    .timeline-item .org {
+      color: var(--text-dim);
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+    .timeline-item p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ===== Contact ===== */
+    .contact-wrap {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .contact-card {
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.08), rgba(59, 130, 246, 0.08));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 64px 40px;
+    }
+    .contact-card h2 {
+      font-size: 36px;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      margin-bottom: 16px;
+    }
+    .contact-card p {
+      color: var(--text-dim);
+      font-size: 18px;
+      margin-bottom: 36px;
+    }
+    .contact-links {
+      display: flex;
+      gap: 14px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    /* ===== Footer ===== */
+    .footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    /* ===== Reveal animation ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 860px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-card {
+        max-width: 360px;
+        margin: 0 auto;
+      }
+      .about-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        flex-direction: column;
+        background: var(--bg-elev);
+        border-bottom: 1px solid var(--border);
+        padding: 16px;
+        gap: 4px;
+      }
+      .nav-links.open {
+        display: flex;
+      }
+      .nav-toggle {
+        display: block;
+      }
+      section {
+        padding: 70px 0;
+      }
+      .section-title {
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient"></div>
+
+  <div id="app">
+    <!-- Navbar -->
+    <nav class="nav" :class="{ scrolled: scrolled }">
+      <div class="container nav-inner">
+        <a href="#top" class="nav-logo">
+          <span class="nav-logo-dot"></span>
+          Marcelo Bento
+        </a>
+        <div class="nav-links" :class="{ open: menuOpen }">
+          <a href="#sobre" @click="menuOpen = false">Sobre</a>
+          <a href="#skills" @click="menuOpen = false">Skills</a>
+          <a href="#projetos" @click="menuOpen = false">Projetos</a>
+          <a href="#formacao" @click="menuOpen = false">Formação</a>
+          <a href="#contato" class="nav-cta" @click="menuOpen = false">Contato</a>
+        </div>
+        <button class="nav-toggle" @click="menuOpen = !menuOpen" aria-label="Menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="3" y1="6" x2="21" y2="6" />
+            <line x1="3" y1="12" x2="21" y2="12" />
+            <line x1="3" y1="18" x2="21" y2="18" />
+          </svg>
+        </button>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="reveal">
+            <div class="hero-badge">
+              <span class="pulse"></span>
+              Disponível para oportunidades
+            </div>
+            <h1>
+              Olá, sou o<br />
+              <span class="grad">Marcelo Bento</span>
+            </h1>
+            <p>
+              Estudante de Ciência da Computação na Universidade Federal do
+              Espírito Santo. Apaixonado por desenvolvimento de software,
+              padrões de projeto e inteligência artificial — sempre em busca
+              de aprender e construir soluções que importam.
+            </p>
+            <div class="hero-actions">
+              <a href="#projetos" class="btn btn-primary">
+                Ver projetos
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a href="https://github.com/Marcelozoo" target="_blank" rel="noopener" class="btn btn-ghost">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>
+                GitHub
+              </a>
+            </div>
+          </div>
+
+          <div class="hero-card reveal">
+            <div class="profile-card">
+              <img class="profile-avatar" :src="avatar" alt="Marcelo Bento" />
+              <div class="profile-name">Marcelo Bento</div>
+              <div class="profile-role">Dev · UFES</div>
+              <div class="profile-stats">
+                <div>
+                  <div class="stat-num">{{ repos.length }}</div>
+                  <div class="stat-label">Repos</div>
+                </div>
+                <div>
+                  <div class="stat-num">{{ followers }}</div>
+                  <div class="stat-label">Seguidores</div>
+                </div>
+                <div>
+                  <div class="stat-num">{{ following }}</div>
+                  <div class="stat-label">Seguindo</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="sobre">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-tag">01 · Sobre mim</span>
+          <h2 class="section-title">Um pouco da minha trajetória</h2>
+        </div>
+        <div class="about-grid">
+          <div class="about-text reveal">
+            <p>
+              Sou estudante de <strong>Ciência da Computação</strong> na
+              Universidade Federal do Espírito Santo (UFES), onde venho
+              construindo uma base sólida em algoritmos, estruturas de dados,
+              engenharia de software e inteligência artificial.
+            </p>
+            <p>
+              Durante a graduação, desenvolvi projetos práticos aplicando
+              padrões de projeto (Adapter, Observer), princípios SOLID,
+              arquitetura MVP e técnicas de machine learning como PCA e k-NN.
+              Tenho experiência com <strong>Java</strong>, <strong>Python</strong>
+              e <strong>Vue.js</strong>, sempre buscando escrever código limpo
+              e manutenível.
+            </p>
+            <p>
+              Curioso por natureza, gosto de resolver problemas complexos e
+              aprender novas tecnologias. Atualmente, busco oportunidades
+              para aplicar meus conhecimentos em projetos reais e continuar
+              evoluindo como desenvolvedor.
+            </p>
+          </div>
+          <div class="info-list reveal">
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>
+              </div>
+              <div>
+                <div class="info-label">Formação</div>
+                <div class="info-value">Ciência da Computação · UFES</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 0 1 0 20M12 2a15 15 0 0 0 0 20"/></svg>
+              </div>
+              <div>
+                <div class="info-label">Localização</div>
+                <div class="info-value">Espírito Santo, Brasil</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><polyline points="4 17 10 11 4 5"/><line x1="12" y1="19" x2="20" y2="19"/></svg>
+              </div>
+              <div>
+                <div class="info-label">Foco</div>
+                <div class="info-value">Desenvolvimento · Padrões de Projeto · IA</div>
+              </div>
+            </div>
+            <div class="info-item">
+              <div class="info-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12 12 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V22"/></svg>
+              </div>
+              <div>
+                <div class="info-label">GitHub</div>
+                <div class="info-value">@Marcelozoo · {{ repos.length }} repositórios</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills -->
+    <section id="skills">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-tag">02 · Competências</span>
+          <h2 class="section-title">Tecnologias e ferramentas</h2>
+          <p class="section-sub">
+            As tecnologias que utilizo nos meus projetos acadêmicos e pessoais.
+          </p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-card reveal" v-for="skill in skills" :key="skill.title">
+            <div class="skill-icon" :style="{ background: skill.bg }">
+              <span :style="{ color: skill.color }">{{ skill.emoji }}</span>
+            </div>
+            <h3>{{ skill.title }}</h3>
+            <p>{{ skill.desc }}</p>
+            <div class="skill-tags">
+              <span class="skill-tag" v-for="t in skill.tags" :key="t">{{ t }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projetos">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-tag">03 · Projetos</span>
+          <h2 class="section-title">Trabalhos e repositórios</h2>
+          <p class="section-sub">
+            Uma seleção dos projetos que desenvolvi durante a graduação e nos
+            estudos pessoais.
+          </p>
+        </div>
+        <div class="projects-grid">
+          <a
+            v-for="proj in repos"
+            :key="proj.name"
+            :href="proj.url"
+            target="_blank"
+            rel="noopener"
+            class="project-card reveal"
+          >
+            <div class="project-top">
+              <span class="project-lang">
+                <span class="lang-dot" :style="{ background: langColor(proj.lang) }"></span>
+                {{ proj.lang || 'Outro' }}
+              </span>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--text-muted)" stroke-width="2"><path d="M7 17L17 7M7 7h10v10"/></svg>
+            </div>
+            <h3>{{ proj.display }}</h3>
+            <p>{{ proj.desc }}</p>
+            <span class="project-link">
+              Ver no GitHub
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+            </span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education Timeline -->
+    <section id="formacao">
+      <div class="container">
+        <div class="reveal">
+          <span class="section-tag">04 · Formação</span>
+          <h2 class="section-title">Educação e trajetória acadêmica</h2>
+        </div>
+        <div class="timeline reveal">
+          <div class="timeline-item" v-for="item in timeline" :key="item.title">
+            <div class="timeline-dot"></div>
+            <div class="timeline-date">{{ item.date }}</div>
+            <h3>{{ item.title }}</h3>
+            <div class="org">{{ item.org }}</div>
+            <p>{{ item.desc }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact -->
+    <section id="contato">
+      <div class="container">
+        <div class="contact-wrap reveal">
+          <div class="contact-card">
+            <span class="section-tag">05 · Contato</span>
+            <h2>Vamos conversar?</h2>
+            <p>
+              Estou aberto a oportunidades de estágio, projetos colaborativos
+              e conversas sobre tecnologia. Sinta-se à vontade para entrar em
+              contato.
+            </p>
+            <div class="contact-links">
+              <a href="https://github.com/Marcelozoo" target="_blank" rel="noopener" class="btn btn-primary">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.8-1.3-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0C17.3 4.7 18.3 5 18.3 5c.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.7-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3z"/></svg>
+                GitHub
+              </a>
+              <a href="mailto:marcelo@example.com" class="btn btn-ghost">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><polyline points="4 4 12 13 20 4"/></svg>
+                E-mail
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        © {{ year }} Marcelo Bento · Construído com Vue.js
+      </div>
+    </footer>
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.prod.js"></script>
+  <script>
+    const { createApp } = Vue;
+
+    createApp({
+      data() {
+        return {
+          scrolled: false,
+          menuOpen: false,
+          year: new Date().getFullYear(),
+          avatar: 'https://avatars.githubusercontent.com/u/96752111?v=4',
+          followers: 6,
+          following: 17,
+          skills: [
+            {
+              title: 'Linguagens',
+              emoji: '⌨️',
+              color: '#34d399',
+              bg: 'rgba(16,185,129,0.12)',
+              desc: 'Linguagens que utilizo no dia a dia.',
+              tags: ['Java', 'Python', 'JavaScript', 'TypeScript'],
+            },
+            {
+              title: 'Frontend',
+              emoji: '🎨',
+              color: '#3b82f6',
+              bg: 'rgba(59,130,246,0.12)',
+              desc: 'Construção de interfaces modernas e reativas.',
+              tags: ['Vue.js', 'HTML5', 'CSS3', 'Tailwind'],
+            },
+            {
+              title: 'Engenharia de Software',
+              emoji: '🏗️',
+              color: '#f59e0b',
+              bg: 'rgba(245,158,11,0.12)',
+              desc: 'Padrões de projeto e boas práticas.',
+              tags: ['SOLID', 'MVP', 'Adapter', 'Observer', 'Design Patterns'],
+            },
+            {
+              title: 'Inteligência Artificial',
+              emoji: '🤖',
+              color: '#f43f5e',
+              bg: 'rgba(244,63,94,0.12)',
+              desc: 'Aplicação de técnicas de ML em datasets reais.',
+              tags: ['PCA', 'k-NN', 'NumPy', 'Pandas'],
+            },
+            {
+              title: 'Ferramentas',
+              emoji: '🔧',
+              color: '#8b5cf6',
+              bg: 'rgba(139,92,246,0.12)',
+              desc: 'Ferramentas para versionamento e produtividade.',
+              tags: ['Git', 'GitHub', 'VS Code', 'Linux'],
+            },
+            {
+              title: 'Matemática & Algoritmos',
+              emoji: '📐',
+              color: '#06b6d4',
+              bg: 'rgba(6,182,212,0.12)',
+              desc: 'Fundamentos teóricos da computação.',
+              tags: ['Algoritmos Numéricos', 'Estruturas de Dados', 'Cálculo Numérico'],
+            },
+          ],
+          repos: [
+            {
+              name: 'LogAdapter',
+              display: 'LogAdapter',
+              lang: 'Java',
+              desc: 'Aplicação do padrão Adapter na criação de um log para um sistema de gestão de usuários. Trabalho final da disciplina de Projeto de Sistemas de Software.',
+              url: 'https://github.com/Marcelozoo/LogAdapter',
+            },
+            {
+              name: 'DadosClima_MarceloBento',
+              display: 'DadosClima',
+              lang: 'Java',
+              desc: 'Aplicação dos princípios SOLID, padrão MVP, Observer e Adapter em um sistema de dados climáticos.',
+              url: 'https://github.com/Marcelozoo/DadosClima_MarceloBento',
+            },
+            {
+              name: 'CalculadoraBonus_MarceloBento',
+              display: 'Calculadora de Bônus',
+              lang: 'Java',
+              desc: 'Atividade prática aplicando o padrão MVP junto aos princípios SOLID para cálculo de bônus de funcionários.',
+              url: 'https://github.com/Marcelozoo/CalculadoraBonus_MarceloBento',
+            },
+            {
+              name: 'trabalho_final_MarceloBento_CaioCordeiro',
+              display: 'Trabalho Final · Projeto de Sistemas',
+              lang: 'Java',
+              desc: 'Trabalho final da disciplina de Projeto de Sistemas de Software, desenvolvido em parceria com Caio Cordeiro.',
+              url: 'https://github.com/Marcelozoo/trabalho_final_MarceloBento_CaioCordeiro',
+            },
+            {
+              name: 'Aplicacao-do-PCA-e-k-NN',
+              display: 'PCA & k-NN',
+              lang: 'Python',
+              desc: 'Aplicação das técnicas de Análise de Componentes Principais (PCA) e k-NN em um dataset, para a disciplina de Inteligência Artificial.',
+              url: 'https://github.com/Marcelozoo/Aplicacao-do-PCA-e-k-NN',
+            },
+            {
+              name: 'Trabalho_Algoritmo_Numericos',
+              display: 'Algoritmos Numéricos',
+              lang: 'Python',
+              desc: 'Implementação de 4 métodos de resolução de sistemas lineares: Eliminação de Gauss, Fatoração LU, Gauss-Jacobi e Gauss-Seidel.',
+              url: 'https://github.com/Marcelozoo/Trabalho_Algoritmo_Numericos',
+            },
+            {
+              name: 'trabalhoFinalVue',
+              display: 'Projeto Final Vue.js',
+              lang: 'Vue',
+              desc: 'Trabalho final utilizando o framework Vue.js para construção de uma aplicação web reativa.',
+              url: 'https://github.com/Marcelozoo/trabalhoFinalVue',
+            },
+            {
+              name: 'Desafio-News-homepage-main',
+              display: 'News Homepage',
+              lang: 'CSS',
+              desc: 'Desafio de front-end retirado do site Frontend Mentor, focado em layout e responsividade.',
+              url: 'https://github.com/Marcelozoo/Desafio-News-homepage-main',
+            },
+            {
+              name: 'QBS_gerencia',
+              display: 'QBS Gerência',
+              lang: null,
+              desc: 'Projeto de gerenciamento em desenvolvimento.',
+              url: 'https://github.com/Marcelozoo/QBS_gerencia',
+            },
+          ],
+          timeline: [
+            {
+              date: '2021 — Presente',
+              title: 'Bacharelado em Ciência da Computação',
+              org: 'Universidade Federal do Espírito Santo (UFES)',
+              desc: 'Formação em algoritmos, estruturas de dados, engenharia de software, inteligência artificial, programação orientada a objetos e matemática computacional.',
+            },
+            {
+              date: '2023',
+              title: 'Projeto de Sistemas de Software',
+              org: 'UFES · Prof. Clayton Vieira Fraga',
+              desc: 'Disciplina com foco em padrões de projeto (Adapter, Observer), arquitetura MVP e princípios SOLID. Múltiplos projetos práticos entregues.',
+            },
+            {
+              date: '2023',
+              title: 'Inteligência Artificial',
+              org: 'UFES',
+              desc: 'Estudo e aplicação de técnicas de machine learning, incluindo PCA e k-NN sobre datasets reais.',
+            },
+            {
+              date: '2023',
+              title: 'Algoritmos Numéricos',
+              org: 'UFES · Prof. Paulo Roberto Nunes de Souza',
+              desc: 'Implementação de métodos numéricos para resolução de sistemas lineares: Gauss, Fatoração LU, Gauss-Jacobi e Gauss-Seidel.',
+            },
+          ],
+        };
+      },
+      mounted() {
+        window.addEventListener('scroll', () => {
+          this.scrolled = window.scrollY > 30;
+        });
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+              }
+            });
+          },
+          { threshold: 0.12 }
+        );
+        this.$nextTick(() => {
+          document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        });
+      },
+      methods: {
+        langColor(lang) {
+          const colors = {
+            Java: '#f59e0b',
+            Python: '#3b82f6',
+            Vue: '#10b981',
+            CSS: '#06b6d4',
+            JavaScript: '#fbbf24',
+            TypeScript: '#3b82f6',
+          };
+          return colors[lang] || '#5a6b85';
+        },
+      },
+    }).mount('#app');
+  </script>
+</body>
+</html>
